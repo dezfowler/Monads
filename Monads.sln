@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monads", "Monads\Monads.csproj", "{2789ABD0-07FB-4FCF-8C43-0E68E851FDE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monads.Test", "Monads.Test\Monads.Test.csproj", "{8A031B83-9DE1-4CBE-9381-97AA6F389AAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2789ABD0-07FB-4FCF-8C43-0E68E851FDE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2789ABD0-07FB-4FCF-8C43-0E68E851FDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2789ABD0-07FB-4FCF-8C43-0E68E851FDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2789ABD0-07FB-4FCF-8C43-0E68E851FDE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A031B83-9DE1-4CBE-9381-97AA6F389AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A031B83-9DE1-4CBE-9381-97AA6F389AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A031B83-9DE1-4CBE-9381-97AA6F389AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A031B83-9DE1-4CBE-9381-97AA6F389AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
