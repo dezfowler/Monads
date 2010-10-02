@@ -1,68 +1,66 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Monads
 {
 	class ActualMaybe<T> : Maybe<T> where T : class
 	{
-		readonly T t;
+		readonly T _t;
 		public ActualMaybe(T t)
 		{
 			if (t == null) throw new ArgumentNullException("t");
-			this.t = t;
+			_t = t;
 		}
 
 		public override Maybe<TResult> Apply<TResult>(Func<T, TResult> func)
 		{
-			return func(t);
+			return func(_t);
 		}
 
 		public override Maybe<TResult> Cast<TResult>()
 		{
-			return t as TResult;
+			return _t as TResult;
 		}
 
 		public override Maybe<T> Do(Action<T> action)
 		{
-			action(t);
+			action(_t);
 			return this;
 		}
 
 		public override Maybe<T> Do(Func<T, bool> func)
 		{
-			return func(t) ? this : Maybe<T>.Nothing;
+			return func(_t) ? this : Nothing;
 		}
 
 		public override Maybe<T> If(Predicate<T> predicate)
 		{
-			return predicate(t) ? this : Maybe<T>.Nothing;
+			return predicate(_t) ? this : Nothing;
 		}
 
 		public override T Return()
 		{
-			return t;
+			return _t;
 		}
 
 		public override T Return(T def)
 		{
-			return t;
+			return _t;
 		}		
 
 		public override TResult Return<TResult>(Func<T, TResult> func)
 		{
-			return func(t);
+			return func(_t);
 		}
 
 		public override TResult Return<TResult>(Func<T, TResult> func, TResult def)
 		{
-			return func(t);
+			return func(_t);
 		}
 
 		public override IEnumerable<T> AsEnumerable()
 		{
-			yield return t;
+			yield return _t;
 		}
 	}
 }

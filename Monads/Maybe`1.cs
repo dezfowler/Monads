@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Monads
 {
@@ -11,7 +9,7 @@ namespace Monads
 		
 		public static implicit operator Maybe<T>(T t)
 		{
-			return t == null ? Maybe<T>.Nothing : new ActualMaybe<T>(t);
+			return t == null ? Nothing : new ActualMaybe<T>(t);
 		}
 
 		public static implicit operator T(Maybe<T> t)
@@ -35,5 +33,4 @@ namespace Monads
 
 		public abstract IEnumerable<T> AsEnumerable();
 	}
-
 }

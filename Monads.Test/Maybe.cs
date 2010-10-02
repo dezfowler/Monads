@@ -159,6 +159,33 @@ namespace Monads.Test
 
 		#region Cast
 		[Test]
+		public void PassingCast()
+		{
+			// Arrange
+			Node node = new Node
+			{
+				 Number = 1,
+				 Parent = new Node
+				 {
+					  Number = 2,
+					  Parent = new Node
+					  {
+							Number = 3
+					  }
+				 }
+			};
+
+			// Act
+			var secondNum = node.Maybe()
+				 .Apply(n => n.Parent)
+				 .Cast<IDoStuff>()
+				 .Return(n => n.Number);
+
+			// Assert
+			Assert.AreEqual(2, secondNum);
+		}
+
+		[Test]
 		public void FailingCast()
 		{
 			// Arrange
@@ -188,6 +215,34 @@ namespace Monads.Test
 		#endregion
 
 		#region If
+        [Test]
+        public void PassingIf()
+        {
+            // Arrange
+            Node node = new Node
+            {
+                Number = 1,
+                Parent = new Node
+                {
+                    Number = 2,
+                    Parent = new Node
+                    {
+                        Number = 3
+                    }
+                }
+            };
+
+            // Act
+            var third = node.Maybe()
+                .Apply(n => n.Parent)
+                .If(n => n.Number == 2)
+                .Apply(n => n.Parent)
+                .Return(n => n.Number);
+
+            // Assert
+            Assert.AreEqual(3, third);
+        }
+
 		[Test]
 		public void FailingIf()
 		{
@@ -218,6 +273,50 @@ namespace Monads.Test
 		#endregion
 
 		#region Do
+        [Test]
+        public void PassingDo()
+        {
+            // Arrange
+            Node node = new Node
+            {
+                Number = 1,
+                Parent = new Node
+                {
+                    Number = 2,
+                    Parent = new Node
+                    {
+                        Number = 3
+                    }
+                }
+            };
+
+            int blah = 0;
+
+            // Act
+            node.Maybe()
+                .Apply(n => n.Parent)
+                .Do(n => blah = n.Number);
+
+            // Assert
+            Assert.AreEqual(2, blah);
+        }
+
+        [Test]
+        public void FailingDo()
+        {
+            // Arrange
+            Node node = null;
+
+            int blah = 0;
+
+            // Act
+            node.Maybe()
+                .Apply(n => n.Parent)
+                .Do(n => blah = n.Number);
+
+            // Assert
+            Assert.AreEqual(0, blah);
+        }
 		#endregion
 
 		#region AsEnumerable
@@ -251,11 +350,16 @@ namespace Monads.Test
 		#endregion
 	}
 
-	class Node
+	class Node : IDoStuff
 	{
 		public int Number { get; set; }
 		public Node Parent { get; set; }
 	}
+
+    interface IDoStuff
+    {
+        int Number { get; }
+    }
 
 	class Blah : Node { }
 }
